@@ -11,11 +11,7 @@ var os = require('os')
 
 // Use junctions on Windows < Vista (6.0),
 // Vista and later support regular symlinks.
-if (os.platform()=='win32' && parseInt(os.release())<6) {
-  var symlinkType = 'junction'
-} else {
-  symlinkType = 'dir'
-}
+var symlinkType = (os.platform() === 'win32') ? 'junction' : 'dir'
 
 module.exports = function linklocal(dirpath, _done) {
 
